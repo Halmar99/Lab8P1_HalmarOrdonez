@@ -24,6 +24,7 @@ public class Lab8P1_HalmarOrdonez {
                     System.out.println("-----Game of life-----");
                     System.out.print("Cuantas rondas desea jugar?: ");
                     int round = read.nextInt();
+                    System.out.println();
 
                     jugar(round);
 
@@ -44,18 +45,18 @@ public class Lab8P1_HalmarOrdonez {
     }
 
     public static void imprimir(int[][] matriz) {
-        int[][]temp=new int[10][10];
-        for(int i=0;i<lista.size();i++){
-            String cord=lista.get(i);
-            char x=cord.charAt(0);
-            char y=cord.charAt(2);
+        int[][] temp = new int[10][10];
+        for (int i = 0; i < lista.size(); i++) {
+            String cord = lista.get(i);
+            char x = cord.charAt(0);
+            char y = cord.charAt(2);
             int numx = x - '0';
-            int numy= y-'0';
-            temp[numx][numy]=1;
+            int numy = y - '0';
+            temp[numx][numy] = 1;
         }
         for (int i = 0; i < temp.length; i++) {
             for (int j = 0; j < temp.length; j++) {
-                System.out.print(temp[i][j]+ " ");
+                System.out.print(temp[i][j] + " ");
             }
             System.out.println();
         }
@@ -84,19 +85,18 @@ public class Lab8P1_HalmarOrdonez {
     public static void jugar(int round) {
         int[][] actual = rngfill();
         System.out.println("Tablero inicial: ");
+        System.out.println("Coordenadas de celdas vivas: " + lista);
         imprimir(actual);
+        actual=nextGen(actual);
         for (int i = 0; i < round; i++) {
-            int[][] siguiente = nextGen(actual);
-            System.out.println("Coordenadas de celdas vivas: " + lista);
+            int [][]siguiente = nextGen(actual);
             System.out.println("------Ronda" + (i + 1) + "------");
+            System.out.println("Coordenadas de celdas vivas: " + lista);
             imprimir(siguiente);
-           
 
             actual = siguiente;
 
         }
-        int[][] siguiente = nextGen(actual);
-        System.out.println("Coordenadas de celdas vivas: " + lista);
     }
 
     public static int[][] nextGen(int[][] actual) {
